@@ -62,6 +62,7 @@ public class SecurityConfiguration {
 						"/swagger-ui/**", "/api/v1/developers", "/api/v1/plan", "/h2-console/**").permitAll()
 				.requestMatchers("/api/v1/users/**").hasAuthority(ADMIN)
 				.requestMatchers("/api/v1/matches/**").hasAnyAuthority(PLAYER)
+				.requestMatchers("/api/v1/federation/*/records").hasAuthority(ADMIN)
 				.anyRequest().authenticated())					
 			
 			.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);		

@@ -44,4 +44,7 @@ public class ChessEventService {
         return chessEventRepository.findParticipantsByEventId(eventId);
     }
     
+    public List<User> getUsersWithLowUpcomingParticipations(List<Federation> federations, LocalDate date, Integer numParticipations) {
+        return chessEventRepository.findUsersWithLowUpcomingParticipations(federations, date, numParticipations);
+    }
 }

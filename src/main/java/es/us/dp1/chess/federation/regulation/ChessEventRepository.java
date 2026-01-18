@@ -20,7 +20,7 @@ public interface ChessEventRepository extends CrudRepository<ChessEvent, Integer
 
     List<ChessEvent> findAllByOrganizedById(Integer federationId);
 
-    @Query("SELECT u FROM User u")
+    @Query("SELECT u FROM ChessEvent e JOIN e.participant u JOIN e.organizedBy f WHERE f IN :federations AND e.date >= :date GROUP BY u HAVING COUNT(u) < :numParticipations")
     List<User> findUsersWithLowUpcomingParticipations(List<Federation> federations, LocalDate date, Integer numParticipations);
 
 }
